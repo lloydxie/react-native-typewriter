@@ -93,6 +93,18 @@ type: `Function` default: `none`
 Called once the typing animation has completed. This callback is **not** called
 if `props.typing` is changed to `0` before the animation completes.
 
+### keySoundMap
+
+type: `Object` default: `none`
+
+A mapping of keyboard key values to an sound file.
+
+### showBlinkingCursor
+
+type: `Boolean` default: `false`
+
+Set to true if you want a blinking cursor to appear along with the typing.
+
 ## License
 
 Released under the MIT license. See [LICENSE](LICENSE) for details.
