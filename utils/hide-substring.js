@@ -1,6 +1,7 @@
 import React, { Children } from 'react';
 import { StyleSheet, Text } from 'react-native';
 
+
 const styles = StyleSheet.create({
   hidden: { color: 'transparent' }
 });
@@ -38,13 +39,6 @@ export default function hideSubstring(component, fixed, start, end) {
       const relEndIndex = endIndex ? (endIndex - index) : strEnd;
       let leftString = child.substring(0, relStartIndex);
       const rightString = child.substring(relEndIndex, strEnd);
-
-      if (leftString[relStartIndex -1] !== '\n') {
-          leftString += '|'
-      }
-      else if (leftString[relStartIndex -1] == '\n') {
-          leftString = child.substring(0, relStartIndex-1) + '|';
-      }
 
       if (!fixed) {
         newChild = [leftString, rightString];
