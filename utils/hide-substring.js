@@ -36,8 +36,15 @@ export default function hideSubstring(component, fixed, start, end) {
     if (strEnd > startIndex && (!endIndex || index < endIndex)) {
       const relStartIndex = startIndex - index;
       const relEndIndex = endIndex ? (endIndex - index) : strEnd;
-      const leftString = child.substring(0, relStartIndex);
+      let leftString = child.substring(0, relStartIndex);
       const rightString = child.substring(relEndIndex, strEnd);
+
+      if (leftString[relStartIndex -1] !== '\n') {
+          leftString += '|'
+      }
+      else if (leftString[relStartIndex -1] == '\n') {
+          leftString = child.substring(0, relStartIndex-1) + '|';
+      }
 
       if (!fixed) {
         newChild = [leftString, rightString];
@@ -47,7 +54,7 @@ export default function hideSubstring(component, fixed, start, end) {
             {child.substring(relStartIndex, relEndIndex)}
           </Text>
         );
-
+          
         newChild = [leftString, styledString, rightString];
       }
     }

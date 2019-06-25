@@ -95,6 +95,10 @@ export default class TypeWriter extends Component {
 
       if (delayMap) {
         delayMap.forEach(({ at, delay }) => {
+          nextTwoTokens = currentToken + nextToken;
+          if (nextTwoTokens.match('\n\n')) {
+            timeout += 1500;
+          }
           if (at === visibleChars || currentToken.match(at)) {
             timeout += delay;
           }
@@ -149,6 +153,7 @@ export default class TypeWriter extends Component {
       ...rest
     } = this.props;
     const { visibleChars } = this.state;
+    const cursor = '|'
     const component = (
       <Text {...rest}>
         {children}
