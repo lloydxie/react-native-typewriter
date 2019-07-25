@@ -108,6 +108,11 @@ export default class TypeWriter extends Component {
         });
       }
 
+      if (this.state.visibleChars == 0) {
+        const { initialDelay } = this.props;
+        timeout = initialDelay
+      }
+
       this.startTyping(timeout);
     }
 
