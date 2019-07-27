@@ -80,7 +80,8 @@ export default class TypeWriter extends Component {
     const {
       delayMap,
       onTyped,
-      onTypingEnd
+      onTypingEnd,
+      paused
     } = this.props;
     const { visibleChars } = this.state;
     const currentToken = getTokenAt(this, prevState.visibleChars);
@@ -116,7 +117,9 @@ export default class TypeWriter extends Component {
         timeout = initialDelay
       }
 
-      this.startTyping(timeout);
+      if (!paused) {
+        this.startTyping(timeout);
+      }
     }
 
     if (!nextToken) {
