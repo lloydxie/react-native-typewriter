@@ -97,12 +97,15 @@ export default class TypeWriter extends Component {
         delayMap.forEach(({ at, delay }) => {
           nextTwoTokens = currentToken + nextToken;
           if (nextTwoTokens.match('\n\n')) {
-            timeout += 2250;
+            timeout += 2000;
+          }
+          else if (nextTwoTokens.match('.\n')) {
+            timeout += 2000;
           }
           else if (currentToken.match('\n')) {
-            timeout += 1500;
+            timeout += 1000;
           }
-          if (at === visibleChars || currentToken.match(at)) {
+          else if (at === visibleChars || currentToken.match(at)) {
             timeout += delay;
           }
         });
