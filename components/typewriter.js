@@ -84,7 +84,7 @@ export default class TypeWriter extends Component {
       paused
     } = this.props;
     const { visibleChars } = this.state;
-    const currentToken = getTokenAt(this, prevState.visibleChars);
+    const currentToken = getTokenAt(this, prevState.visibleChars) || ' ';
     const nextToken = getTokenAt(this, visibleChars);
 
     if (currentToken) {
@@ -98,9 +98,6 @@ export default class TypeWriter extends Component {
         delayMap.forEach(({ at, delay }) => {
           nextTwoTokens = currentToken + nextToken;
           if (nextTwoTokens.match('\n\n')) {
-            timeout += 2000;
-          }
-          else if (nextTwoTokens.match('.\n')) {
             timeout += 2000;
           }
           else if (currentToken.match('\n')) {
